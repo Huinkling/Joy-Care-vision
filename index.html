@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>乐养App效果图</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <a-scene id="blue_planet">
+        <a-sky id="spot1" src="images/blue_planet.jpg" rotation="0 -130 0"></a-sky>
+        <a-sky id="spot2" src="images/star_light.png" rotation="0 -130 0" visible="false"></a-sky>
+    </a-scene>       
+    <div class="app-container">
+        <h1>欢迎回到乐养！我们可以怎样帮您？</h1>
+        <div class="functions-container">
+            <div class="function" id="background3D">
+                <img src="images/vision.png" alt="3D景观">
+                <p>3D景观</p>
+            </div>
+            <div class="function" id="mindfulness">
+                <img src="images/mindfulness.png" alt="正念">
+                <p>正念</p>
+            </div>
+            <div class="function" id="objectRecognition">
+                <img src="images/magnifier.png" alt="识物">
+                <p>识物</p>
+            </div>
+            <div class="function" id="watching">
+                <img src="images/video.png" alt="观看">
+                <p>观看</p>
+            </div>
+        </div>
+    </div>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script>
+        function toggleSky() {
+            console.log('Toggling sky...');
+            const spot1 = document.getElementById('spot1');
+            const spot2 = document.getElementById('spot2');
+            console.log('Current visibility (spot1):', spot1.object3D.visible);
+            if (spot1.object3D.visible) {
+                spot1.setAttribute('visible', false);
+                spot2.setAttribute('visible', true);
+            } else {
+                spot1.setAttribute('visible', true);
+                spot2.setAttribute('visible', false);
+            }
+        }
+
+        window.onload = function() {
+            document.getElementById('background3D').addEventListener('click', function () {
+                var scene = document.getElementById('blue_planet');
+                scene.style.display = 'block'; // Just control visibility via CSS
+            });
+
+            document.addEventListener('keydown', function (event) {
+                toggleSky();
+            });
+        };
+    </script>        
+</body>
+</html>
+
